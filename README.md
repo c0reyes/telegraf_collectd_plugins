@@ -43,7 +43,7 @@ This script its for get the info from transmission server.
 
 ```
 [[inputs.exec]]
-  commands = ["python transmission_telegraf.py -u admin -p admin -i 10.0.0.10 -x 9090"]
+  commands = ["python transmission_telegraf.py -u admin -p admin -i 127.0.0.1 -x 9090"]
   data_format = "influx"
   interval = "120s"
   timeout = "20s"
