@@ -15,6 +15,12 @@ This plugins tested with Huawei HG8245H. Get the info necesary for the graph. Us
   timeout = "20s"
 ```
 
+## Requirements
+
+Python libs:
+
+- urllib3
+
 # huawei_collectd.py
 
 It's the same than huawei_telegraf.py but work with collectd.
@@ -35,6 +41,13 @@ LoadPlugin python
 </Plugin>
 ```
 
+## Requirements
+
+Python libs:
+
+- urllib3
+- collectd
+
 # transmission_telegraf.py
 
 This script its for get the info from transmission server.
@@ -48,3 +61,9 @@ This script its for get the info from transmission server.
   interval = "120s"
   timeout = "20s"
 ```
+
+## Requirements
+
+Python libs:
+
+- transmission-rpc
