@@ -10,34 +10,34 @@ import re
 
 def getInfo(username, password, host):
 	http = urllib3.HTTPConnectionPool(host)
-	
+
 	# Login
 	request = http.request('GET','/asp/GetRandCount.asp')
-	
+
 	## Parameters
-	fields = {'': 'x.X_HW_Token={}'.format(request.data.decode('utf-8-sig'))}
-	
-	## Headers
 	password64 = base64.b64encode(str.encode(password)).decode('ascii')
-	cookie = 'Cookie=UserName:{}:PassWord:{}:Language:english:id=-1'.format(username, password64)
-	headers = {'Referer': 'http://{}/'.format(host), 'Cookie' : cookie}
-	
-	request = http.request('POST', '/login.cgi', headers=headers, fields=fields)
-	headers = {'Cookie': request.headers['set-cookie']}
+    fields = 'UserName={}&PassWord={}&x.X_HW_Token={}'.format(username, password64, request.data.decode('utf-8-sig'))
 
-	# Random page
-	http.request('GET', '/frame.asp', headers=headers)
+    ## Headers
+    cookie = 'Cookie=body:Language:english:id=-1'.format(username, password64)
+    headers = {'Referer': 'http://{}/'.format(host), 'Cookie' : cookie}
 
-	# Data
-	request = http.request('GET', '/html/status/ethinfo.asp', headers=headers)	
-	data = request.data.decode('UTF-8').split('\r\n')
+    request = http.request('POST', '/login.cgi', body=fields, headers=headers)
+    headers = {'Cookie': request.headers['set-cookie']}
+
+    # Random page
+    http.request('GET', '/frame.asp', headers=headers)
+
+    # Data
+    request = http.request('GET', '/html/amp/ethinfo/ethinfo.asp', headers=headers)
+    data = request.data.decode('UTF-8').split('\r\n')
 
 	eths = []
 	for d in data:
 		if "var userEthInfos" in d:
 			d = d.replace("var userEthInfos = new Array(","").replace(",null);","").replace(")","").replace("\"","")
 			eths = d.split("new LANStats(")
-	
+
 	for eth in eths:
 		if(eth):
 			tmp = eth.split(",")
@@ -70,7 +70,7 @@ def main():
 	username = None
 	password = None
 	host = None
-	
+
 	opts, args = getopt.getopt(sys.argv[1:], 'u:p:i:', ['username=',
                                                   'password=',
                                                   'ip='])
@@ -78,7 +78,7 @@ def main():
 	if not opts:
 	    usage()
 	    sys.exit(1)
-	
+
 	for opt, arg in opts:
 	    if opt in ('-u', '--username'):
 	        username = arg
@@ -94,4 +94,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
