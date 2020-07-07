@@ -2,7 +2,7 @@
 
 # noaa.py
 
-It's a plugin for read the nhc noaa rss and save into influx, have another function to get link of the storm. [Grafana Dashboard.](dashboard/noaa.json)
+It's a plugin for read the nhc noaa rss and save into influx, have another function to get link of the storm. [Grafana Dashboard.](https://github.com/c0reyes/telegraf_collectd_plugins/blob/master/dashboards/noaa.json)
 
 ## Settings
 
