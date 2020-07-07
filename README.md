@@ -8,19 +8,19 @@ It's a plugin for read the nhc noaa rss and save into influx, have another funct
 
 ```
 [[inputs.exec]]
-  commands = ["python3 /home/vagrant/scripts/noaa.py -u https://www.nhc.noaa.gov/index-cp.xml"]
+  commands = ["python3 noaa.py -u https://www.nhc.noaa.gov/index-cp.xml"]
   data_format = "influx"
   interval = "3600s"
   timeout = "90s"
 
 [[inputs.exec]]
-  commands = ["python3 /home/vagrant/scripts/noaa.py -u https://www.nhc.noaa.gov/index-at.xml"]
+  commands = ["python3 noaa.py -u https://www.nhc.noaa.gov/index-at.xml"]
   data_format = "influx"
   interval = "3600s"
   timeout = "90s"
 
 [[inputs.exec]]
-  commands = ["python3 /home/vagrant/scripts/noaa.py -u https://www.nhc.noaa.gov/index-ep.xml"]
+  commands = ["python3 noaa.py -u https://www.nhc.noaa.gov/index-ep.xml"]
   data_format = "influx"
   interval = "3600s"
   timeout = "90s"
