@@ -1,4 +1,36 @@
-# telegraf & collectd - plugins
+# Plugins for telegraf & collectd
+
+# noaa.py
+
+It's a plugin for read the nhc noaa rss and save into influx, have another function to get link of the storm. [Grafana Dashboard.](dashboard/noaa.json)
+
+## Settings
+
+```
+[[inputs.exec]]
+  commands = ["python3 /home/vagrant/scripts/noaa.py -u https://www.nhc.noaa.gov/index-cp.xml"]
+  data_format = "influx"
+  interval = "3600s"
+  timeout = "90s"
+
+[[inputs.exec]]
+  commands = ["python3 /home/vagrant/scripts/noaa.py -u https://www.nhc.noaa.gov/index-at.xml"]
+  data_format = "influx"
+  interval = "3600s"
+  timeout = "90s"
+
+[[inputs.exec]]
+  commands = ["python3 /home/vagrant/scripts/noaa.py -u https://www.nhc.noaa.gov/index-ep.xml"]
+  data_format = "influx"
+  interval = "3600s"
+  timeout = "90s"
+```
+
+## Requirements
+
+Python libs:
+
+- BeautifulSoup
 
 # huawei_telegraf.py
 
